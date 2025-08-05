@@ -12,7 +12,7 @@ class EventController extends Controller
     use AuthorizesRequests;
     public function index()
     {
-        return Event::all();
+        return Event::with('user')->get();
     }
 
     public function show($id)
