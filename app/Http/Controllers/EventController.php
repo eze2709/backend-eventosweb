@@ -40,16 +40,24 @@ class EventController extends Controller
         return response()->json($event, 201);
     }
 
-    public function update(Request $request, $id)
-    {
-        $event = Event::findOrFail($id);
+        public function update(Request $request, $id)
+        {
+            $event = Event::findOrFail($id);
 
-        $this->authorize('update', $event);
+            $this->authorize('update', $event);
 
-        $event->update($request->only(['title', 'description', 'date']));
+            $validated = $request->validate([
+                'title' => 'required|string',
+                'description' => 'nullable|string',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+            ]);
 
-        return response()->json($event);
-    }
+            $event->update($validated);
+
+            return response()->json($event);
+        }
+
 
     public function destroy($id)
     {
