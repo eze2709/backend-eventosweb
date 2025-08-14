@@ -20,6 +20,8 @@ class EventFactory extends Factory
         $endDate = (clone $startDate)->modify('+'.rand(1, 3).' days');
 
         return [
+            // librería Faker - datos falsos para pruebas
+            // paragraph() uin parrafo aleatorio
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
             'start_date' => $startDate,

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
         UserSeeder::class,
-        // EventSeeder::class // si lo querés separado
+
     ]);
 
         // User::factory()->create([
